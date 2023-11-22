@@ -65,6 +65,9 @@
   padding-top: 5px;
   overflow-x: hidden;
   overflow-y: scroll;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 .userInfoCard::-webkit-scrollbar {

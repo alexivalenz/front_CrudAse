@@ -10,10 +10,6 @@ export class AppComponent {
   title = 'frontCrud_examenAse';
 
   usersArray: User[] = [
-    {id: 1, name: 'Alexia Valenz', status: 'Activo'},
-    {id: 2, name: 'Wendy Val', status: 'Activo'},
-    {id: 3, name: 'Jefecito Arellano', status: 'Activo'},
-    {id: 4, name: 'Yunis Gonz', status: 'Activo'}
   ]
 
   selectedUser: User = new User(0, '','');

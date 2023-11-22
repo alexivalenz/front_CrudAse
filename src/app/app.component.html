@@ -17,18 +17,24 @@
               <option value="Activo">Activo</option>
               <option value="Cancelado">Cancelado</option>
             </select>
-
             <button (click)="addOrEdit()" class="bton">Guardar</button>
           </form>
         </div>
       </div>
       <div class="module userInfoCard">
-        <div
-          *ngFor="let user of usersArray"
-          class="div_card">
-          <button (click)="deleteUser(user);"class="usr_btns delete">Borrar</button>
-          <button (click)="editUser(user);" class="usr_btns edit">Editar</button>
-          <p class="usr_info"> <span class="w3-badge w3-green">{{user.id}}</span> {{user.name}} - {{user.status}}</p>
+        <div *ngIf="usersArray.length > 0;">
+          <div
+            *ngFor="let user of usersArray"
+            class="div_card">
+            <button (click)="deleteUser(user);"class="usr_btns delete">Borrar</button>
+            <button (click)="editUser(user);" class="usr_btns edit">Editar</button>
+            <p class="usr_info"> <span class="w3-badge w3-green">{{user.id}}</span> {{user.name}} - {{user.status}}</p>
+          </div>
+        </div>
+        <div *ngIf="usersArray.length == 0;">
+          <div>
+            <p>no hay usuarios para mostrar</p>
+          </div>
         </div>
       </div>
     </div>
