@@ -1,0 +1,206 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*Div principal donde se cargan todos los modulos*/
+.main_white_div {
+  width: 70vw;
+  height: 80%;
+  border-radius: 20px;
+  background-color: white;
+  /* centrar vertical y horizontalmente */
+  position: absolute;
+  top: 15%;
+  left: 18.5%;
+  right: 20%;
+  margin: -25px 0 0 -25px; /* aplicar a top y al margen izquierdo un valor negativo para completar el centrado del elemento hijo */
+}
+
+/*Estilos para el titulo y subtitulo*/
+.div_title {
+  width: 100%;
+  height: 20%;
+  border-radius: 20px 20px 0px 0px;
+  text-align: center;
+}
+
+.main_title {
+  background-color: lightgrey;
+  font-family: 'Poppins', sans-serif;
+  font-size: 35px;
+  border: 0px;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.subtitle {
+  background-color: lightgrey;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 0%;
+}
+
+/*Estilos para los divs de modulos*/
+.div_modules {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  height: 90%;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.module {
+  flex: 1 1 auto;
+  width: 50%;
+  height: 75%;
+  padding-left: 20px;
+}
+
+.azul {
+  background-color: white;
+  border-left: 3px solid green;
+  border-radius: 0px 0px 20px 0px;
+  padding-top: 20px;
+}
+
+.rojo {
+  padding-top: 40px;
+  background-color: white;
+  border-radius: 0px 0px 0px 20px;
+}
+
+/*Configuracion para que se distribuyan los elementos
+  según la resolucion de la pantalla del navegador.
+  En especial, para que el titulo disminuya de tamaño
+  y los modulos se conviertan en filas en lugar de columnas*/
+@media (max-width: 800px) {
+  .div_modules {
+    /* si es muy angosta, uno debajo del otro */
+    flex-flow: column;
+  }
+
+  .module {
+    width: 100%;
+  }
+
+  .main_title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .subtitle {
+    display: none;
+  }
+}
+@media (max-height: 500px){
+  .main_title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    display: none;
+  }
+}
+
+@media (max-height: 300px){
+  .main_title {
+    font-size: 10px;
+  }
+
+  .subtitle {
+    display: none;
+  }
+}
+
+/*Estilos del form*/
+input[type=text], select {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=text] {
+  margin-bottom: 30px;
+}
+
+.bton {
+  background-color: #4CAF50;
+  color: white;
+  width: 50%;
+  padding: 14px 30px;
+  margin: 8px;
+  margin-top: 40px;
+  margin-right: 35px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.Form_div {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.label_style {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 6px;
+}
+
+/*Estilos de la seccion de mostrar la info de los
+  usuarios*/
+.div_card {
+  border-radius: 5px 5px 5px 5px;
+  border-color:solid green;
+  background-color: white;
+  border: 2px solid #e7e7e7;
+  width: 95%;
+  height: 15%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.div_card:hover{
+  background-color: #e7e7e7;
+}
+
+.usr_btns {
+  border: none;
+  color: black;
+  padding: 5px 9px;
+  cursor: pointer;
+  border-radius: 5px;
+  float: right;
+  margin-right: 5px;
+  margin-top: 7px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.edit {background-color: white; border: 2px solid #4b134f;}
+.edit:hover {background: #4b134f; color: white;}
+
+.delete {
+  background-color: #4b134f; border: 2px solid #4b134f;
+  color: white;
+}
+
+.usr_info {
+  font-family: 'Poppins', sans-serif;
+  padding-left: 5px;
+}
