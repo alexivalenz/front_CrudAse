@@ -214,3 +214,10 @@ input[type=submit]:hover {
   font-family: 'Poppins', sans-serif;
   padding-left: 5px;
 }
+
+.pUser {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(60%, -50%);
+}

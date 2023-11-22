@@ -1,13 +1,23 @@
 import { Component } from '@angular/core';
 import { User } from './models/user';
-
+import { UsersServiceService } from './services/users-service.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent{
   title = 'frontCrud_examenAse';
+
+  constructor(private servicioUsuarios: UsersServiceService) {
+    this.servicioUsuarios.getConsultarClientes().subscribe(resultSet => {
+      console.log(resultSet)
+
+      if(resultSet.length != 0){
+        this.usersArray = resultSet;
+      }
+    })
+  }
 
   usersArray: User[] = [
   ]
@@ -32,5 +42,8 @@ export class AppComponent {
       this.usersArray = this.usersArray.filter(x => x.id != user.id);
       this.selectedUser = new User(0, '','')
     }
+  }
+
+  consultUsers(){
   }
 }
