@@ -53,18 +53,25 @@
 .module {
   flex: 1 1 auto;
   width: 50%;
-  height: 75%;
+  height: 77%;
   padding-left: 20px;
+
 }
 
-.azul {
-  background-color: white;
+.userInfoCard {
+  height: 22em;
   border-left: 3px solid green;
   border-radius: 0px 0px 20px 0px;
-  padding-top: 20px;
+  padding-top: 5px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-.rojo {
+.userInfoCard::-webkit-scrollbar {
+  display: none;
+}
+
+.infoCapture {
   padding-top: 40px;
   background-color: white;
   border-radius: 0px 0px 0px 20px;

@@ -5,14 +5,15 @@
       <P class="subtitle">Consulta, creación, borrado y modificación de los datos de los usuarios</P>
     </div>
     <div class="div_modules">
-      <div class="module rojo">
+      <div class="module infoCapture">
         <div class="form-div">
           <form>
             <label class="label_style" for="name"><strong>Nombre</strong></label>
-            <input  type="text"  [(ngModel)]="selectedUser.name" id="name" name="nombre" placeholder="Ingresa tu nombre...">
+            <input  type="text"  [(ngModel)]="selectedUser.name" onkeydown="return /[a-z, ]/i.test(event.key)" id="name" name="nombre" placeholder="Ingresa tu nombre...">
 
             <label class="label_style" for="status"><strong>Estatus</strong></label>
-            <select id="estatus" name="Estatus" [(ngModel)]="selectedUser.status" aria-placeholder="Selecciona un estatus">
+            <select id="estatus" name="Estatus" [(ngModel)]="selectedUser.status">
+              <option disabled selected>Selecciona un estatus</option>
               <option value="Activo">Activo</option>
               <option value="Cancelado">Cancelado</option>
             </select>
@@ -21,7 +22,7 @@
           </form>
         </div>
       </div>
-      <div class="module azul">
+      <div class="module userInfoCard">
         <div
           *ngFor="let user of usersArray"
           class="div_card">
