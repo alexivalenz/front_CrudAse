@@ -6,20 +6,22 @@
     </div>
     <div class="div_modules">
       <div class="module infoCapture">
-        <div class="form-div">
-          <form>
-            <label class="label_style" for="name"><strong>Nombre</strong></label>
-            <input  type="text"  [(ngModel)]="selectedUser.name" onkeydown="return /[a-z, ]/i.test(event.key)" id="name" name="nombre" placeholder="Ingresa tu nombre...">
-
-            <label class="label_style" for="status"><strong>Estatus</strong></label>
-            <select id="estatus" name="Estatus" [(ngModel)]="selectedUser.status">
-              <option disabled selected>Selecciona un estatus</option>
-              <option value="Activo">Activo</option>
-              <option value="Cancelado">Cancelado</option>
-            </select>
-            <button (click)="addOrEdit()" class="bton">Guardar</button>
-          </form>
-        </div>
+        <form  class="formClass" autocomplete="off">
+          <label class="label_style" for="id"><strong>Folio (ID)</strong></label>
+          <input  type="text" id="id" name="id" readonly disabled value={{nextId}}>
+          <br>
+          <label class="label_style" for="name"><strong>Nombre</strong></label>
+          <input  type="text"  [(ngModel)]="selectedUser.name" onkeydown="return /[a-z, ]/i.test(event.key)" id="name" name="nombre" placeholder="Ingresa tu nombre...">
+          <br>
+          <label class="label_style" for="status"><strong>Estatus</strong></label>
+          <select id="estatus" name="Estatus" [(ngModel)]="selectedUser.status">
+            <option disabled selected>Selecciona un estatus</option>
+            <option value="Activo">Activo</option>
+            <option value="Cancelado">Cancelado</option>
+          </select>
+          <button (click)="addOrEdit()" class="bton_guardar">Guardar</button>
+          <button (click)="cleanForm()" class="bton_limpiar">Limpiar</button>
+        </form>
       </div>
       <div class="module userInfoCard">
         <div *ngIf="usersArray.length > 0;">
@@ -28,11 +30,12 @@
             class="div_card">
             <button (click)="deleteUser(user);"class="usr_btns delete">Borrar</button>
             <button (click)="editUser(user);" class="usr_btns edit">Editar</button>
-            <p class="usr_info"> <span class="w3-badge w3-green">{{user.id}}</span> {{user.name}} - {{user.status}}</p>
+            <p *ngIf="user.status == 'Activo';" class="p_UserInfo"><span class={{gStyle}}>{{user.id}}</span>  {{user.name}} - {{user.status}}</p>
+            <p *ngIf="user.status == 'Cancelado';" class="p_UserInfo"><span class={{rStyle}}>{{user.id}}</span>  {{user.name}} - {{user.status}}</p>
           </div>
         </div>
         <div *ngIf="usersArray.length == 0;">
-          <div>
+          <div class="p_NoRegistros">
             <p>no hay usuarios para mostrar</p>
           </div>
         </div>
