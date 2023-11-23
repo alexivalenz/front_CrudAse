@@ -5,7 +5,8 @@ Los estilos que observas se encuentran realizados 100% en CSS.
 
 ## Development server
 
-Para iniciar el proyecto despues de clonarlo, correr el comando `npm install` para agregar las dependencias en el Package.json. Despues correr el comando `ng serve` para levantar el servidor en su modo Desarrollo. Para mandar peticiones a la API, la URL que se necesita es http://localhost:4200.
+Para iniciar el proyecto despues de clonarlo, correr el comando `npm install` para agregar las dependencias en el Package.json. Despues correr el comando `ng serve` para levantar el servidor en su modo Desarrollo.
+Para visualizar la APP o los cambios realizados en esta, abrir el siguiente link: http://localhost:4200.
 
 ## IMPORTANTE ANTES DE CORRER LA APLICACIÓN
 
