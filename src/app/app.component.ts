@@ -21,10 +21,10 @@ export class AppComponent{
     this.servicioUsuarios.getAllUsers().subscribe(resultSet => {
       (resultSet.length != 0)? this.usersArray = resultSet : 0 ;
       console.log(resultSet);
+      console.log('Ejecuto GET Req para getAllUsers');
     });
     this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
-      console.log('si entro en el nextid');
-      console.log(resultSet);
+      console.log('Ejecuto GET Req para nextIdInDB');
       this.nextId = resultSet;
     })
   }
@@ -36,13 +36,21 @@ export class AppComponent{
       //Script para agregar un nuevo usuario
       if(this.selectedUser.id === 0){
         this.selectedUser.id = this.nextId;
-        this.servicioUsuarios.createNewUser(this.selectedUser).subscribe();
+        this.servicioUsuarios.createNewUser(this.selectedUser).subscribe(resultSet => {
+            console.log('Ejecuto POST Req para createNewUser');
+            this.nextId = resultSet;
+          });
         this.usersArray.push(this.selectedUser);
         alert("¡¡Usuario registrado de forma exitosa!!. Si el registro no se muestra, puedes hacer scroll sobre el area derecha donde se muestran los registros guardados.")
-        this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {this.nextId = resultSet;})
+        this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
+          console.log('Ejecuto GET Req para nextIdInDB');
+          this.nextId = resultSet;
+        });
       } else{
         //Script para editar un usuario
-        this.servicioUsuarios.updateUserById(this.selectedUser).subscribe();
+        this.servicioUsuarios.updateUserById(this.selectedUser).subscribe(resultSet => {
+          console.log('Ejecuto PUT Req para updateUserById');
+        });
       }
       this.selectedUser = new User(0, '','');
     }
@@ -54,7 +62,9 @@ export class AppComponent{
 
   deleteUser(user: User){
     if(confirm('¿Estás seguro que quieres borrar el registro de '+user.name+'?')){
-      this.servicioUsuarios.deleteUserById(user).subscribe();
+      this.servicioUsuarios.deleteUserById(user).subscribe(resultSet => {
+        console.log('Ejecuto DELETE Req para deleteUserById');
+      });
       this.usersArray = this.usersArray.filter(x => x.id != user.id);
       this.selectedUser = new User(0, '','')
     }
