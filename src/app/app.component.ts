@@ -10,6 +10,13 @@ import { UsersServiceService } from './services/users-service.service';
 export class AppComponent{
   title = 'frontCrud_examenAse';
 
+  usersArray: User[] = []
+  selectedUser: User = new User(0, '','');
+
+  nextId = 0;
+  gStyle='w3-badge w3-tiny w3-green';
+  rStyle='w3-badge w3-tiny w3-red';
+
   constructor(private servicioUsuarios: UsersServiceService) {
     this.servicioUsuarios.getAllUsers().subscribe(resultSet => {
       (resultSet.length != 0)? this.usersArray = resultSet : 0 ;
@@ -22,45 +29,23 @@ export class AppComponent{
     })
   }
 
-  usersArray: User[] = []
-
-  selectedUser: User = new User(0, '','');
-  nextId = 0;
-
-  gStyle='w3-badge w3-tiny w3-green'
-  rStyle='w3-badge w3-tiny w3-red'
-
   addOrEdit(){
-
-    if((this.selectedUser.name === '' && this.selectedUser.status === '') || this.selectedUser.name === ''  || this.selectedUser.status === '')
-    {
+    if((this.selectedUser.name === '' && this.selectedUser.status === '') || this.selectedUser.name === ''  || this.selectedUser.status === ''){
       alert("Los campos Nombre y Estatus no se pueden guardar vacíos. Favor de revisar.")
-
-    }else {
+    } else{
       //Script para agregar un nuevo usuario
-    if(this.selectedUser.id === 0){
-      this.selectedUser.id = this.nextId;
-      console.log(this.selectedUser)
-      this.servicioUsuarios.createNewUser(this.selectedUser).subscribe(resultSet => {
-        console.log('POST - si se hizo lo de aqui xd')
-      });
-      this.usersArray.push(this.selectedUser);
-      alert("¡¡Usuario registrado de forma exitosa!!. Si el registro no se muestra, puedes hacer scroll sobre el area derecha donde se muestran los registros guardados.")
-      this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
-        console.log('si entro en el nextid');
-        console.log(resultSet);
-        this.nextId = resultSet;
-      })
-    }
-    else{
+      if(this.selectedUser.id === 0){
+        this.selectedUser.id = this.nextId;
+        this.servicioUsuarios.createNewUser(this.selectedUser).subscribe();
+        this.usersArray.push(this.selectedUser);
+        alert("¡¡Usuario registrado de forma exitosa!!. Si el registro no se muestra, puedes hacer scroll sobre el area derecha donde se muestran los registros guardados.")
+        this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {this.nextId = resultSet;})
+      } else{
         //Script para editar un usuario
-        this.servicioUsuarios.updateUserById(this.selectedUser).subscribe(resultSet => {
-          console.log('PUT - si se hizo lo de aqui xd')
-        });
+        this.servicioUsuarios.updateUserById(this.selectedUser).subscribe();
       }
       this.selectedUser = new User(0, '','');
     }
-
   }
 
   editUser(user: User){
@@ -69,9 +54,7 @@ export class AppComponent{
 
   deleteUser(user: User){
     if(confirm('¿Estás seguro que quieres borrar el registro de '+user.name+'?')){
-      this.servicioUsuarios.deleteUserById(user).subscribe(resultSet => {
-        console.log('DELETE - si se hizo lo de aqui xd')
-      });
+      this.servicioUsuarios.deleteUserById(user).subscribe();
       this.usersArray = this.usersArray.filter(x => x.id != user.id);
       this.selectedUser = new User(0, '','')
     }

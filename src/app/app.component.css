@@ -19,6 +19,8 @@
 }
 
 /*Estilos para el titulo y subtitulo*/
+/*Estilos generales del DIV que
+  contiene titulo y subtitulo*/
 .div_title {
   width: 100%;
   height: 20%;
@@ -26,6 +28,7 @@
   text-align: center;
 }
 
+/*Estilos particulares del TITULO*/
 .main_title {
   background-color: lightgrey;
   font-family: 'Poppins', sans-serif;
@@ -35,6 +38,7 @@
   margin-top: 20px;
 }
 
+/*Estilos particulares del TITULO*/
 .subtitle {
   background-color: lightgrey;
   font-family: 'Poppins', sans-serif;
@@ -42,6 +46,8 @@
 }
 
 /*Estilos para los divs de modulos*/
+/*MODULES:
+Estilo para el contenedor de los modulos*/
 .div_modules {
   display: flex;
   flex-flow: row;
@@ -50,14 +56,19 @@
   border-radius: 0px 0px 20px 20px;
 }
 
+/*MODULES:
+  Estilo general para los modulos*/
 .module {
   flex: 1 1 auto;
   width: 50%;
   height: 77%;
   padding-left: 20px;
-
 }
 
+/*MODULES:
+  Estilo particular para el modulo
+  donde se muestra las tarjetas de
+  informacion*/
 .userInfoCard {
   height: 24em;
   border-left: 3px solid green;
@@ -70,65 +81,23 @@
 
 }
 
+/*Estilo para el scroll de la seccion donde
+  se muestran las tarjetas con información*/
 .userInfoCard::-webkit-scrollbar {
   display: none;
 }
 
+/*MODULES:
+  Estilo particular para el modulo
+  donde se captura la información*/
 .infoCapture {
   padding-top: 8px;
   background-color: white;
   border-radius: 0px 0px 0px 20px;
 }
 
-/*Configuracion para que se distribuyan los elementos
-  según la resolucion de la pantalla del navegador.
-  En especial, para que el titulo disminuya de tamaño
-  y los modulos se conviertan en filas en lugar de columnas*/
-@media (max-width: 800px) {
-  .div_modules {
-    /* si es muy angosta, uno debajo del otro */
-    flex-flow: column;
-  }
-
-  .module {
-    width: 100%;
-  }
-
-  .main_title {
-    font-size: 20px;
-  }
-
-  .subtitle {
-    display: none;
-  }
-}
-
-@media (max-width: 500px) {
-  .subtitle {
-    display: none;
-  }
-}
-@media (max-height: 500px){
-  .main_title {
-    font-size: 20px;
-  }
-
-  .subtitle {
-    display: none;
-  }
-}
-
-@media (max-height: 300px){
-  .main_title {
-    font-size: 10px;
-  }
-
-  .subtitle {
-    display: none;
-  }
-}
-
 /*Estilos del form*/
+/*FORM: Estilos generales del INPUT y SELECT*/
 input[type=text], select {
   width: 90%;
   padding: 5px 15px;
@@ -139,11 +108,13 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
+/*FORM: Margen inferior de los INPUT*/
 input[type=text] {
   margin-bottom: 30px;
 }
 
-.bton {
+/*FORM: Estilo particular del BOTON GUARDAR*/
+.bton_guardar {
   background-color: #4CAF50;
   color: white;
   width: 30%;
@@ -158,23 +129,21 @@ input[type=text] {
   float: right;
 }
 
-.bton:hover {
+/*FORM: Estilo particular del BOTON GUARDAR
+  al pasar el mouse por encima*/
+.bton_guardar:hover {
   background-color: #45a049;
 }
 
-.Form_div {
-  background-color: #f2f2f2;
-  padding: 8px;
-  border-radius: 5px;
-}
-
+/*FORM: Estilo particular de las etiquetas
+  del form*/
 .label_style {
   font-family: 'Poppins', sans-serif;
   font-weight: 6px;
 }
 
-/*Estilos de la seccion de mostrar la info de los
-  usuarios*/
+/*Estilos de la tarjeta en que se muestra
+  la info del usuario registrado*/
 .div_card {
   border-radius: 5px 5px 5px 5px;
   border-color:solid green;
@@ -190,6 +159,8 @@ input[type=text] {
   background-color: #e7e7e7;
 }
 
+/*Estilo general de los botones que aparecen
+  en la tarjeta del usuario*/
 .usr_btns {
   border: none;
   color: black;
@@ -202,15 +173,19 @@ input[type=text] {
   font-family: 'Poppins', sans-serif;
 }
 
+/*Estilo particular del BOTON EDITAR*/
 .edit {background-color: white; border: 2px solid #4b134f;}
 .edit:hover {background: #4b134f; color: white;}
 
+/*Estilo particular del BOTON BORRAR*/
 .delete {
   background-color: #4b134f; border: 2px solid #4b134f;
   color: white;
 }
 
-.usr_info {
+/*Estilo particular de la etiqueta que contiene
+  la INFORMACION DEL USUARIO*/
+.p_UserInfo {
   font-family: 'Poppins', sans-serif;
   padding-left: 5px;
   padding-right: 5px;
@@ -218,9 +193,84 @@ input[type=text] {
   margin-left: 5px;
 }
 
-.pUser {
+.p_NoRegistros {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(60%, -50%);
 }
+
+
+
+
+/* Estilos para @media:
+  Configuracion para que se distribuyan los elementos
+  según la resolucion de la pantalla del navegador.
+  En especial, para que el titulo disminuya de tamaño
+  y los modulos se conviertan en filas en lugar de columnas*/
+  @media (max-width: 800px) {
+    .div_modules {
+      flex-flow: column;
+    }
+
+    .module {
+      width: 100%;
+    }
+
+    .main_title {
+      font-size: 20px;
+    }
+
+    .subtitle {
+      display: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .subtitle {
+      display: none;
+    }
+  }
+
+  @media (max-height: 500px){
+    .main_title {
+      font-size: 20px;
+    }
+
+    .subtitle {
+      display: none;
+    }
+
+    .userInfoCard {
+      height: 13em;
+      border-left: 3px solid green;
+      border-radius: 0px 0px 20px 0px;
+      padding-top: 5px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+  }
+
+  @media (max-height: 300px){
+    .main_title {
+      font-size: 10px;
+    }
+
+    .subtitle {
+      display: none;
+    }
+
+    .userInfoCard {
+      height: 10em;
+      border-left: 3px solid green;
+      border-radius: 0px 0px 20px 0px;
+      padding-top: 5px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+    }
+  }
