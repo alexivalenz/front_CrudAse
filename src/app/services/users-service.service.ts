@@ -9,6 +9,7 @@ import { User } from '../models/user';
 export class UsersServiceService {
 
   apiServer = "http://localhost:3000/users";
+  endpointId ='http://localhost:3000/nextId';
 
   constructor(private service:HttpClient) { }
 
@@ -33,5 +34,9 @@ export class UsersServiceService {
 
   deleteUserById(userInfo: User): Observable<any>{
     return this.service.delete(this.apiServer+'/'+userInfo.id);
+  }
+
+  nextIdInDB():Observable<any>{
+    return this.service.get(this.endpointId)
   }
 }

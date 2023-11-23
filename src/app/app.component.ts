@@ -12,34 +12,49 @@ export class AppComponent{
 
   constructor(private servicioUsuarios: UsersServiceService) {
     this.servicioUsuarios.getAllUsers().subscribe(resultSet => {
-      console.log('Respuesta de la API en GET getAllUsers')
-      console.log( resultSet);
-
       (resultSet.length != 0)? this.usersArray = resultSet : 0 ;
+      console.log(resultSet);
+    });
+    this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
+      console.log('si entro en el nextid');
+      console.log(resultSet);
+      this.nextId = resultSet;
     })
   }
 
   usersArray: User[] = []
 
   selectedUser: User = new User(0, '','');
+  nextId = 0;
+
+  gStyle='w3-badge w3-tiny w3-green'
+  rStyle='w3-badge w3-tiny w3-red'
 
   addOrEdit(){
-    //Script para agregar un nuevo usuario
+
+    if((this.selectedUser.name === '' && this.selectedUser.status === '') || this.selectedUser.name === ''  || this.selectedUser.status === '')
+    {
+      alert("Los campos Nombre y Estatus no se pueden guardar vacíos. Favor de revisar.")
+
+    }else {
+      //Script para agregar un nuevo usuario
     if(this.selectedUser.id === 0){
+      this.selectedUser.id = this.nextId;
+      console.log(this.selectedUser)
       this.servicioUsuarios.createNewUser(this.selectedUser).subscribe(resultSet => {
         console.log('POST - si se hizo lo de aqui xd')
       });
-      this.selectedUser.id = this.usersArray.length + 1;
       this.usersArray.push(this.selectedUser);
     }
+    else{
+        //Script para editar un usuario
+        this.servicioUsuarios.updateUserById(this.selectedUser).subscribe(resultSet => {
+          console.log('PUT - si se hizo lo de aqui xd')
+        });
+        this.selectedUser = new User(0, '','');
+      }
 
-    if(this.selectedUser.id > 0){
-      this.servicioUsuarios.updateUserById(this.selectedUser).subscribe(resultSet => {
-        console.log('PUT - si se hizo lo de aqui xd')
-      });
     }
-    //Script para modificar un usuario
-    this.selectedUser = new User(0, '','');
 
   }
 
