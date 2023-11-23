@@ -38,13 +38,13 @@ export class AppComponent{
         this.selectedUser.id = this.nextId;
         this.servicioUsuarios.createNewUser(this.selectedUser).subscribe(resultSet => {
             console.log('Ejecuto POST Req para createNewUser');
-            this.nextId = resultSet;
+
+            this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
+              console.log('Ejecuto GET Req para nextIdInDB');
+              this.nextId = resultSet;
+            });
           });
         this.usersArray.push(this.selectedUser);
-        this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
-          console.log('Ejecuto GET Req para nextIdInDB');
-          this.nextId = resultSet;
-        });
         alert("¡¡Usuario registrado de forma exitosa!!. Si el registro no se muestra, puedes hacer scroll sobre el area derecha donde se muestran los registros guardados.")
 
       } else{
@@ -52,14 +52,18 @@ export class AppComponent{
         this.servicioUsuarios.updateUserById(this.selectedUser).subscribe(resultSet => {
           console.log('Ejecuto PUT Req para updateUserById');
           alert("¡¡Usuario modificado de forma exitosa!!")
-
         });
       }
+      this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
+        console.log('Ejecuto GET Req para nextIdInDB');
+        this.nextId = resultSet;
+      });
       this.selectedUser = new User(0, '','');
     }
   }
 
   editUser(user: User){
+    this.nextId = user.id;
     this.selectedUser = user;
   }
 
@@ -70,7 +74,7 @@ export class AppComponent{
         this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
           console.log('Ejecuto GET Req para nextIdInDB');
           this.nextId = resultSet;
-        })
+        });
       });
       this.usersArray = this.usersArray.filter(x => x.id != user.id);
       this.selectedUser = new User(0, '','')
