@@ -1,6 +1,6 @@
 # front_crudAse
 
-Proyecto frontend encargado de la administración (consulta, creación, modificación y borrado) de usuarios, apoyado de una API en NodeJS (`ws_crudAse`) que realiza el procesamiento pertinente para realizar las tareas de administración de usuarios.
+Proyecto frontend que utiliza la tecnología de Angular, encargado de la administración (consulta, creación, modificación y borrado) de usuarios, apoyado de una API en NodeJS (`ws_crudAse`) que realiza el procesamiento pertinente para realizar las tareas de administración de usuarios.
 Los estilos que observas se encuentran realizados 100% en CSS. 
 
 ## Development server
