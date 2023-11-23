@@ -20,7 +20,7 @@ export class AppComponent{
   constructor(private servicioUsuarios: UsersServiceService) {
     this.servicioUsuarios.getAllUsers().subscribe(resultSet => {
       (resultSet.length != 0)? this.usersArray = resultSet : 0 ;
-      console.log(resultSet);
+      //console.log(resultSet);
       console.log('Ejecuto GET Req para getAllUsers');
     });
     this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
@@ -41,15 +41,18 @@ export class AppComponent{
             this.nextId = resultSet;
           });
         this.usersArray.push(this.selectedUser);
-        alert("¡¡Usuario registrado de forma exitosa!!. Si el registro no se muestra, puedes hacer scroll sobre el area derecha donde se muestran los registros guardados.")
         this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
           console.log('Ejecuto GET Req para nextIdInDB');
           this.nextId = resultSet;
         });
+        alert("¡¡Usuario registrado de forma exitosa!!. Si el registro no se muestra, puedes hacer scroll sobre el area derecha donde se muestran los registros guardados.")
+
       } else{
         //Script para editar un usuario
         this.servicioUsuarios.updateUserById(this.selectedUser).subscribe(resultSet => {
           console.log('Ejecuto PUT Req para updateUserById');
+          alert("¡¡Usuario modificado de forma exitosa!!")
+
         });
       }
       this.selectedUser = new User(0, '','');
@@ -64,6 +67,10 @@ export class AppComponent{
     if(confirm('¿Estás seguro que quieres borrar el registro de '+user.name+'?')){
       this.servicioUsuarios.deleteUserById(user).subscribe(resultSet => {
         console.log('Ejecuto DELETE Req para deleteUserById');
+        this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
+          console.log('Ejecuto GET Req para nextIdInDB');
+          this.nextId = resultSet;
+        })
       });
       this.usersArray = this.usersArray.filter(x => x.id != user.id);
       this.selectedUser = new User(0, '','')
