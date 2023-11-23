@@ -80,4 +80,12 @@ export class AppComponent{
       this.selectedUser = new User(0, '','')
     }
   }
+
+  cleanForm (){
+    this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
+      console.log('Ejecuto GET Req para nextIdInDB');
+      this.nextId = resultSet;
+    });
+    this.selectedUser = new User(0, '','');
+  }
 }
