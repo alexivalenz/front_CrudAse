@@ -6,16 +6,16 @@ import { UsersServiceService } from './services/users-service.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent{
   title = 'frontCrud_examenAse';
 
   constructor(private servicioUsuarios: UsersServiceService) {
-    this.servicioUsuarios.getConsultarClientes().subscribe(resultSet => {
-      console.log(resultSet)
+    this.servicioUsuarios.getAllUsers().subscribe(resultSet => {
+      console.log('Respuesta de la API en GET getAllUsers')
+      console.log( resultSet);
 
-      if(resultSet.length != 0){
-        this.usersArray = resultSet;
-      }
+      (resultSet.length != 0)? this.usersArray = resultSet : 0 ;
     })
   }
 
@@ -25,11 +25,18 @@ export class AppComponent{
   selectedUser: User = new User(0, '','');
 
   addOrEdit(){
+    let successReq;
+    //Script para agregar un nuevo usuario
     if(this.selectedUser.id === 0){
+      //this.servicioUsuarios
+      this.servicioUsuarios.createNewUser(this.selectedUser).subscribe(resultSet => {
+        console.log('si se hizo lo de aqui xd')
+      });
       this.selectedUser.id = this.usersArray.length + 1;
       this.usersArray.push(this.selectedUser);
     }
 
+    //Script para modificar un usuario
     this.selectedUser = new User(0, '','');
   }
 
@@ -42,8 +49,5 @@ export class AppComponent{
       this.usersArray = this.usersArray.filter(x => x.id != user.id);
       this.selectedUser = new User(0, '','')
     }
-  }
-
-  consultUsers(){
   }
 }
