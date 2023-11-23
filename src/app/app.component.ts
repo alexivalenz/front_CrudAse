@@ -12,6 +12,8 @@ export class AppComponent{
 
   usersArray: User[] = []
   selectedUser: User = new User(0, '','');
+  preUpName= '';
+  preUpStatus = '';
 
   nextId = 0;
   gStyle='w3-badge w3-tiny w3-green';
@@ -65,6 +67,10 @@ export class AppComponent{
   editUser(user: User){
     this.nextId = user.id;
     this.selectedUser = user;
+    this.preUpName = this.selectedUser.name.toString();
+    console.log(this.preUpName)
+    this.preUpStatus = this.selectedUser.status.toString();
+    console.log(this.preUpName)
   }
 
   deleteUser(user: User){
@@ -82,10 +88,19 @@ export class AppComponent{
   }
 
   cleanForm (){
+    if(this.usersArray.includes(this.selectedUser))
+    {
+      console.log('ya en el clean');
+    console.log(this.preUpStatus);
+    this.selectedUser = new User(this.selectedUser.id,this.preUpName ,this.preUpStatus);
+    this.usersArray = this.usersArray.filter(x => x.id != this.selectedUser.id);
+    this.usersArray.splice(this.selectedUser.id-1, 0, this.selectedUser);
+    }
+    this.selectedUser = new User(0, '','');
+
     this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
       console.log('Ejecuto GET Req para nextIdInDB');
       this.nextId = resultSet;
     });
-    this.selectedUser = new User(0, '','');
   }
 }
