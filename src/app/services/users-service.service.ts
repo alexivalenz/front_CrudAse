@@ -24,5 +24,12 @@ export class UsersServiceService {
     return this.service.post(this.apiServer, body,{'headers':headers});
   }
 
+  updateUserById(userInfo: User): Observable<any>{
+    const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify(userInfo);
+    console.log(body)
+    return this.service.put(this.apiServer+'/'+userInfo.id, body,{'headers':headers});
+  }
+
 
 }

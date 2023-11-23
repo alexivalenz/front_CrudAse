@@ -19,25 +19,28 @@ export class AppComponent{
     })
   }
 
-  usersArray: User[] = [
-  ]
+  usersArray: User[] = []
 
   selectedUser: User = new User(0, '','');
 
   addOrEdit(){
-    let successReq;
     //Script para agregar un nuevo usuario
     if(this.selectedUser.id === 0){
-      //this.servicioUsuarios
       this.servicioUsuarios.createNewUser(this.selectedUser).subscribe(resultSet => {
-        console.log('si se hizo lo de aqui xd')
+        console.log('POST - si se hizo lo de aqui xd')
       });
       this.selectedUser.id = this.usersArray.length + 1;
       this.usersArray.push(this.selectedUser);
     }
 
+    if(this.selectedUser.id > 0){
+      this.servicioUsuarios.updateUserById(this.selectedUser).subscribe(resultSet => {
+        console.log('PUT - si se hizo lo de aqui xd')
+      });
+    }
     //Script para modificar un usuario
     this.selectedUser = new User(0, '','');
+
   }
 
   editUser(user: User){
