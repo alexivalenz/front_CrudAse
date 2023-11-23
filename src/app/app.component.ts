@@ -45,15 +45,20 @@ export class AppComponent{
         console.log('POST - si se hizo lo de aqui xd')
       });
       this.usersArray.push(this.selectedUser);
+      alert("¡¡Usuario registrado de forma exitosa!!. Si el registro no se muestra, puedes hacer scroll sobre el area derecha donde se muestran los registros guardados.")
+      this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
+        console.log('si entro en el nextid');
+        console.log(resultSet);
+        this.nextId = resultSet;
+      })
     }
     else{
         //Script para editar un usuario
         this.servicioUsuarios.updateUserById(this.selectedUser).subscribe(resultSet => {
           console.log('PUT - si se hizo lo de aqui xd')
         });
-        this.selectedUser = new User(0, '','');
       }
-
+      this.selectedUser = new User(0, '','');
     }
 
   }

@@ -6,12 +6,14 @@
     </div>
     <div class="div_modules">
       <div class="module infoCapture">
-        <div class="form-div">
+        <div class="Form-div">
           <form  autocomplete="off">
-            <label class="label_style" for="id"><strong>ID</strong></label>
+            <label class="label_style" for="id"><strong>Folio (ID)</strong></label>
             <input  type="text" id="id" name="id" readonly disabled value={{nextId}}>
+            <br>
             <label class="label_style" for="name"><strong>Nombre</strong></label>
             <input  type="text"  [(ngModel)]="selectedUser.name" onkeydown="return /[a-z, ]/i.test(event.key)" id="name" name="nombre" placeholder="Ingresa tu nombre...">
+            <br>
             <label class="label_style" for="status"><strong>Estatus</strong></label>
             <select id="estatus" name="Estatus" [(ngModel)]="selectedUser.status">
               <option disabled selected>Selecciona un estatus</option>
@@ -29,8 +31,8 @@
             class="div_card">
             <button (click)="deleteUser(user);"class="usr_btns delete">Borrar</button>
             <button (click)="editUser(user);" class="usr_btns edit">Editar</button>
-            <p *ngIf="user.status == 'Activo';" class="usr_info"><span class={{gStyle}}> {{user.id}}</span>{{user.name}} - {{user.status}}</p>
-            <p *ngIf="user.status == 'Cancelado';" class="usr_info"><span class={{rStyle}}> {{user.id}}</span>{{user.name}} - {{user.status}}</p>
+            <p *ngIf="user.status == 'Activo';" class="usr_info"><span class={{gStyle}}>{{user.id}}</span>  {{user.name}} - {{user.status}}</p>
+            <p *ngIf="user.status == 'Cancelado';" class="usr_info"><span class={{rStyle}}>{{user.id}}</span>  {{user.name}} - {{user.status}}</p>
           </div>
         </div>
         <div *ngIf="usersArray.length == 0;">
