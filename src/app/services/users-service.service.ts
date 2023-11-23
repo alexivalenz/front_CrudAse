@@ -31,5 +31,7 @@ export class UsersServiceService {
     return this.service.put(this.apiServer+'/'+userInfo.id, body,{'headers':headers});
   }
 
-
+  deleteUserById(userInfo: User): Observable<any>{
+    return this.service.delete(this.apiServer+'/'+userInfo.id);
+  }
 }

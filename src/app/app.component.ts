@@ -49,6 +49,9 @@ export class AppComponent{
 
   deleteUser(user: User){
     if(confirm('¿Estás seguro que quieres borrar el registro de '+user.name+'?')){
+      this.servicioUsuarios.deleteUserById(user).subscribe(resultSet => {
+        console.log('DELETE - si se hizo lo de aqui xd')
+      });
       this.usersArray = this.usersArray.filter(x => x.id != user.id);
       this.selectedUser = new User(0, '','')
     }
