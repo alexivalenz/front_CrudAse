@@ -93,8 +93,9 @@ export class AppComponent{
       console.log('ya en el clean');
     console.log(this.preUpStatus);
     this.selectedUser = new User(this.selectedUser.id,this.preUpName ,this.preUpStatus);
-    this.usersArray = this.usersArray.filter(x => x.id != this.selectedUser.id);
     this.usersArray.splice(this.selectedUser.id-1, 0, this.selectedUser);
+    this.usersArray.splice(this.selectedUser.id-2,1);
+
     }
     this.selectedUser = new User(0, '','');
 
