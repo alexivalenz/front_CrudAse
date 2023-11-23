@@ -67,10 +67,6 @@ export class AppComponent{
   editUser(user: User){
     this.nextId = user.id;
     this.selectedUser = user;
-    this.preUpName = this.selectedUser.name.toString();
-    console.log(this.preUpName)
-    this.preUpStatus = this.selectedUser.status.toString();
-    console.log(this.preUpName)
   }
 
   deleteUser(user: User){
@@ -85,23 +81,5 @@ export class AppComponent{
       this.usersArray = this.usersArray.filter(x => x.id != user.id);
       this.selectedUser = new User(0, '','')
     }
-  }
-
-  cleanForm (){
-    if(this.usersArray.includes(this.selectedUser))
-    {
-      console.log('ya en el clean');
-    console.log(this.preUpStatus);
-    this.selectedUser = new User(this.selectedUser.id,this.preUpName ,this.preUpStatus);
-    this.usersArray.splice(this.selectedUser.id-1, 0, this.selectedUser);
-    this.usersArray.splice(this.selectedUser.id-2,1);
-
-    }
-    this.selectedUser = new User(0, '','');
-
-    this.servicioUsuarios.nextIdInDB().subscribe(resultSet => {
-      console.log('Ejecuto GET Req para nextIdInDB');
-      this.nextId = resultSet;
-    });
   }
 }
